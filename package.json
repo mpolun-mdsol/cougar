@@ -8,13 +8,16 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt spec"
+    "test": "grunt spec",
+    "migrate": "db-migrate up -e ${NODE_ENV:-dev}",
+    "create-db": "createdb cougar-dev"
   },
   "keywords": [
     "polunware"
   ],
   "dependencies": {
     "bluebird": "^2.0.0",
+    "db-migrate": "^0.7.1",
     "epr": "^0.1.1",
     "express": "^4.8.3",
     "lodash": "^2.4.1",

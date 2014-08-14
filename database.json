@@ -1,0 +1,18 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "mpolun",
+    "password": "",
+    "host": "localhost",
+    "database": "cougar-dev"
+  },
+
+  "test": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "",
+    "host": "localhost",
+    "database": "cougar-test"
+  },
+  "prod": "DATABASE_URL"
+}
