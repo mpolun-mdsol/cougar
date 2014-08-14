@@ -2,3 +2,6 @@
 node_modules/
 _specRunner.html
 .grunt/
+
+# app/assets is for built assets
+app/assets/
