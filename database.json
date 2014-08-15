@@ -1,7 +1,7 @@
 {
   "dev": {
     "driver": "pg",
-    "user": "mpolun",
+    "user": "root",
     "password": "",
     "host": "localhost",
     "database": "cougar-dev"
