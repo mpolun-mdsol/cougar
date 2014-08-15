@@ -5,7 +5,8 @@ exports.up = function(db, callback) {
   db.createTable('tournaments', {
     id: {type: 'int', primaryKey: true},
     name: 'string',
-    game: 'string'
+    game: 'string',
+    office: 'string'
   }, callback)
 };
 

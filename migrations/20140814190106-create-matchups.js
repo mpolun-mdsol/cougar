@@ -6,7 +6,9 @@ exports.up = function(db, callback) {
     id: {type: 'int', primaryKey: true},
     team_a: 'int',
     team_b: 'int',
-    winner: 'int'
+    winner: 'int',
+    score_a: 'int',
+    score_b: 'int'
   }, callback)
 };
 
