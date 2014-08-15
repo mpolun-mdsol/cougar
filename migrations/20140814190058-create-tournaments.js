@@ -3,9 +3,10 @@ var type = dbm.dataType;
 
 exports.up = function(db, callback) {
   db.createTable('tournaments', {
-    id: {type: 'int', primaryKey: true},
+    id: {type: 'int', primaryKey: true, autoIncrement: true},
     name: 'string',
-    game: 'string'
+    game: 'string',
+    office: 'string'
   }, callback)
 };
 

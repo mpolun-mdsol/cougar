@@ -10,16 +10,23 @@
   "scripts": {
     "test": "grunt spec",
     "migrate": "db-migrate up -e ${NODE_ENV:-dev}",
-    "create-db": "createdb cougar-dev"
+    "create-db": "createdb cougar-dev",
+    "migrate-down": "db-migrate down -e ${NODE_ENV:-dev}",
+    "postinstall": "epr"
   },
   "keywords": [
     "polunware"
   ],
+  "epr": {
+    "models": "lib/models"
+  },
   "dependencies": {
     "bluebird": "^2.0.0",
+    "bookshelf": "^0.7.7",
     "db-migrate": "^0.7.1",
     "epr": "^0.1.1",
     "express": "^4.8.3",
+    "knex": "^0.6.22",
     "lodash": "^2.4.1",
     "pg": "^3.4.1",
     "serve-static": "^1.5.1",
