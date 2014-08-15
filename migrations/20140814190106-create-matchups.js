@@ -3,7 +3,7 @@ var type = dbm.dataType;
 
 exports.up = function(db, callback) {
   db.createTable('matchups', {
-    id: {type: 'int', primaryKey: true},
+    id: {type: 'int', primaryKey: true, autoIncrement: true},
     team_a: 'int',
     team_b: 'int',
     winner: 'int',
