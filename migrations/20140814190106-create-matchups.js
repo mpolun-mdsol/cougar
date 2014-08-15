@@ -8,7 +8,9 @@ exports.up = function(db, callback) {
     team_b: 'int',
     winner: 'int',
     score_a: 'int',
-    score_b: 'int'
+    score_b: 'int',
+    tournament: 'int',
+    parent_matchup: 'int'
   }, callback)
 };
 
