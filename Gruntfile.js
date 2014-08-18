@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   config.browserfiles = ['app/js/**/*.js', 'app/js/*.js']
   config.browserspecfiles = ['app/spec/**/*Spec.js', 'app/spec/*Spec.js']
   config.e2efiles = ['e2e/**/*Spec.js', 'e2e/*Spec.js']
+  config.styleFiles = ['app/css/*.scss']
   config.backendFiles = config.nodespecfiles.concat(config.nodefiles)
   config.frontendFiles = config.browserfiles.concat(config.browserspecfiles)
   config.allCodeFiles = config.nodefiles.concat(config.browserfiles)
@@ -61,13 +62,32 @@ module.exports = function(grunt) {
   config.browserify = {
     main: {
       files: {
-        'app/assets/bundle.js': 'app/js/main.js',
-        'app/spec/specBundle.js': config.browserSpecFiles
+        'app/assets/bundle.js': 'app/js/main.js'
       },
       options: {
         debug: true,
         alias: []
       }
+    }
+  }
+
+  config.sass = {
+    main: {
+      files: {'app/assets/main.css': 'app/css/main.scss'}
+    }
+  }
+
+  config.concat = {
+    options: {
+      sourceMap: true
+    },
+    css: {
+      src: [
+        'bower_components/bootstrap/dist/css/bootstrap.css',
+        'bower_components/bootstrap/dist/css/bootstrap-theme.css',
+        'app/assets/main.css'
+      ],
+      dest: 'app/assets/bundle.css'
     }
   }
 
@@ -102,6 +122,10 @@ module.exports = function(grunt) {
     lint: {
       files: config.allJS,
       tasks: 'eslint'
+    },
+    scss: {
+      files: config.styleFiles,
+      tasks: ['sass', 'concat:css']
     }
   }
 
@@ -114,6 +138,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon')
   grunt.loadNpmTasks('grunt-node-inspector')
   grunt.loadNpmTasks('grunt-concurrent')
+  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-sass')
 
   grunt.registerMultiTask('spec', 'Run node jasmine specs', function(){
     var done = this.async();
@@ -124,4 +150,5 @@ module.exports = function(grunt) {
   })
 
   grunt.registerTask('default', ['concurrent:dev'])
+  grunt.registerTask('build', ['browserify', 'sass', 'concat'])
 }
