@@ -1,7 +1,7 @@
 'use strict'
 var express = require('express'),
     serveStatic = require('serve-static'),
-    bookshelf = require('./lib/models/bookshelf')
+    bookshelf = require('models/bookshelf')
 
 var app = express(),
     port = process.env.PORT || 7777,
@@ -12,20 +12,20 @@ app.use(serveStatic('app/'))
 app.set('bookshelf', bookshelf)
 
 // Models
-var Player = require('./lib/models/players')
+var Player = require('models/players')
 
 router.get('/', function serveDefault(req, res) {
   res.json({content: 'Hello World!'})
 })
 
-router.get('/players', function servePlayers(req, res) {
-  Player.fetchAll().then(function callback(players) {
+router.get('/api/players', function servePlayers(req, res) {
+  Player.fetchAll().then(function playersFetched(players) {
     res.json(players)
   })
 })
 
-router.get('/player/:id', function servePlayers(req, res) {
-  Player.where('id', req.params.id).fetch().then(function callback(player) {
+router.get('/api/players/:id', function servePlayers(req, res) {
+  Player.where('id', req.params.id).fetch().then(function playerFetched(player) {
     res.json(player)
   })
 })
