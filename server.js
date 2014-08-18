@@ -15,7 +15,7 @@ app.set('bookshelf', bookshelf)
 var Player = require('models/players')
 
 router.get('/', function serveDefault(req, res) {
-  res.json({content: 'Hello World!'})
+  res.json({content: 'Hello World this is a test!'})
 })
 
 router.get('/api/players', function servePlayers(req, res) {
