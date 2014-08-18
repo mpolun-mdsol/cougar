@@ -66,7 +66,11 @@ module.exports = function(grunt) {
       },
       options: {
         debug: true,
-        alias: []
+        alias: [
+          'bower_components/angular/angular.js:angular',
+          'bower_components/angular-strap/dist/angular-strap.js:angular-strap',
+          'bower_components/angular-strap/dist/angular-strap.tpl.js:angular-strap.tpl'
+        ]
       }
     }
   }
