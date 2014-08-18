@@ -12,7 +12,7 @@
     "migrate": "db-migrate up -e ${NODE_ENV:-dev}",
     "create-db": "createdb cougar-dev",
     "migrate-down": "db-migrate down -e ${NODE_ENV:-dev}",
-    "postinstall": "epr"
+    "postinstall": "cd node_modules && ln -s ../lib/models ./models"
   },
   "keywords": [
     "polunware"
