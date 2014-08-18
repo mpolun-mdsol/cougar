@@ -24,6 +24,12 @@ router.get('/players', function servePlayers(req, res) {
   })
 })
 
+router.get('/player/:id', function servePlayers(req, res) {
+  Player.where('id', req.params.id).fetch().then(function callback(player) {
+    res.json(player)
+  })
+})
+
 app.use('/', router)
 app.listen(port)
 console.log('cougar loading on port', port)
