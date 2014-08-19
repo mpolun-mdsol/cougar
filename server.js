@@ -50,6 +50,12 @@ router.route('/api/players/:player_id')
     res.json(player)
   })
 })
+.delete(function destroyPlayer(req, res) {
+  var player = req.player.id
+  req.player.destroy().then(function playerDestroyed() {
+    res.send('Player ' + player + ' has been destroyed')
+  })
+})
 
 app.use('/', router)
 app.listen(port)
