@@ -2,7 +2,7 @@
 var express = require('express'),
     serveStatic = require('serve-static'),
     bookshelf = require('models/bookshelf'),
-    basicAuth = requre('basic-auth-connect')
+    basicAuth = require('basic-auth-connect')
 
 var app = express(),
     port = process.env.PORT || 7777,
