@@ -41,8 +41,14 @@ router.param('player_id', function fetchPlayer(req, res, next, id) {
   })
 })
 
-router.route('/api/players/:player_id').get(function servePlayer(req, res) {
+router.route('/api/players/:player_id')
+.get(function servePlayer(req, res) {
   res.json(req.player)
+})
+.put(function updatePlayer(req, res) {
+  req.player.set(req.body).save().then(function playerUpdated(player) {
+    res.json(player)
+  })
 })
 
 app.use('/', router)
