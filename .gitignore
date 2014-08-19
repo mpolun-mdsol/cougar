@@ -4,6 +4,3 @@ _specRunner.html
 .grunt/
 bower_components/
 .sass-cache/
-
-# app/assets is for built assets
-app/assets/
