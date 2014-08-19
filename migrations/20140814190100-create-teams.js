@@ -4,8 +4,8 @@ var type = dbm.dataType;
 exports.up = function(db, callback) {
   db.createTable('teams', {
     id: {type: 'int', primaryKey: true, autoIncrement: true},
-    name: 'string',
-    tournament: 'int'
+    name: {type: 'string', notNull: true},
+    tournament: {type: 'int', notNull: true},
   }, callback)
 };
 

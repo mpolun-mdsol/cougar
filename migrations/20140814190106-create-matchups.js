@@ -9,7 +9,7 @@ exports.up = function(db, callback) {
     winner: 'int',
     score_a: 'int',
     score_b: 'int',
-    tournament: 'int',
+    tournament: {type: 'int', notNull: true},
     parent_matchup: 'int'
   }, callback)
 };
