@@ -2,7 +2,8 @@
 var express = require('express'),
     serveStatic = require('serve-static'),
     bookshelf = require('models/bookshelf'),
-    basicAuth = require('basic-auth-connect')
+    basicAuth = require('basic-auth-connect'),
+    bodyParser = require('body-parser')
 
 var app = express(),
     port = process.env.PORT || 7777,
@@ -11,6 +12,7 @@ var app = express(),
 // serve front-end
 app.use(serveStatic('app/'))
 app.use(basicAuth('mdsol', 'password*8'))
+app.use(bodyParser.json())
 app.set('bookshelf', bookshelf)
 
 // Models
