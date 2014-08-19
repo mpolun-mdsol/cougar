@@ -28,14 +28,25 @@ router.get('/api/players', function servePlayers(req, res) {
   })
 })
 
-router.get('/api/players/:id', function servePlayers(req, res) {
-  Player.where('id', req.params.id).fetch().then(function playerFetched(player) {
+router.post('/api/players', function createPlayer(req, res) {
+  Player.forge(req.body).save().then(function playerCreated(player) {
     res.json(player)
   })
 })
 
-router.post('/api/players', function createPlayer(req, res) {
-  Player.forge(req.body).save().then(function playerCreated(player) {
+router.param('player_id', function fetchPlayer(req, res, next, id) {
+  Player.where('id', id).fetch().then(function playerFetched(player) {
+    req.player = player
+    next()
+  })
+})
+
+router.route('/api/players/:player_id')
+.get(function servePlayer(req, res) {
+  res.json(req.player)
+})
+.put(function updatePlayer(req, res) {
+  req.player.set(req.body).save().then(function playerUpdated(player) {
     res.json(player)
   })
 })
