@@ -1,7 +1,8 @@
 'use strict'
 var express = require('express'),
     serveStatic = require('serve-static'),
-    bookshelf = require('models/bookshelf')
+    bookshelf = require('models/bookshelf'),
+    basicAuth = requre('basic-auth-connect')
 
 var app = express(),
     port = process.env.PORT || 7777,
@@ -9,6 +10,7 @@ var app = express(),
 
 // serve front-end
 app.use(serveStatic('app/'))
+app.use(basicAuth('mdsol', 'password*8'))
 app.set('bookshelf', bookshelf)
 
 // Models
