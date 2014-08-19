@@ -34,6 +34,12 @@ router.get('/api/players/:id', function servePlayers(req, res) {
   })
 })
 
+router.post('/api/players', function createPlayer(req, res) {
+  Player.forge(req.body).save().then(function playerCreated(player) {
+    res.json(player)
+  })
+})
+
 app.use('/', router)
 app.listen(port)
 console.log('cougar loading on port', port)
