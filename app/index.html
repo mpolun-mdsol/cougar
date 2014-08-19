@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="cougar">
   <head>
     <title>Cougar tournaments</title>
     <link rel="stylesheet" href="assets/bundle.css">
   </head>
   <body>
-    <!-- Add Player -->
-    <form action="" id="add-player">
-      <div class="form-group">
-        <label for="player-name">Player Name</label>
-        <input type="text" name="player-name">
-      </div>
-      <div class="form-group">
-        <label for="player-email">Player Email</label>
-        <input type="text" name="player-email">
-      </div>
-      <div class="form-group">
-        <label for="player-team">Team</label>
-        <input type="text" name="player-team">
-      </div>
-      <div class="form-group"></div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+    <div id="main" ng-controller="PlayersCtrl">
+      <!-- Add Player -->
+      <form name="playerForm" id="add-player">
+        <div class="form-group">
+          <label for="player-name">Player Name</label>
+          <input class="form-control" type="text" name="player-name" ng-model="form.player.name">
+        </div>
 
+        <div class="form-group">
+          <label for="player-email">Player Email</label>
+          <input class="form-control" type="email" name="player-email" ng-model="form.player.email">
+        </div>
+
+        <div class="form-group">
+          <label for="player-team">Team</label>
+          <input class="form-control" type="text" name="player-team" ng-model="form.player.team">
+        </div>
+
+        <div class="form-group"></div>
+
+        <button class="btn btn-primary" type="submit" ng-click="addPlayer(form.player)">Submit</button>
+        <button type="button" class="btn btn-default" ng-click="PlayersCtrl.clearForm()">Clear</button>
+      </form>
+    </div>
     <script src="assets/bundle.js"></script>
   </body>
 </body>
