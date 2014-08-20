@@ -1,0 +1,11 @@
+body {
+  background-color: #F7F3F0; }
+
+#main {
+  margin-top: 60px; }
+  #main form {
+    border: 1px solid #555;
+    background-color: #FFF;
+    padding: 10px; }
+    #main form h2 {
+      margin-top: 0; }

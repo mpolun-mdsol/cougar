@@ -5,28 +5,49 @@
     <link rel="stylesheet" href="assets/bundle.css">
   </head>
   <body>
-    <div id="main" ng-controller="PlayersCtrl">
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <a href="" class="navbar-brand">Cougar</a>
+    </header>
+
+    <div id="main" class="container-fluid">
       <!-- Add Player -->
-      <form name="playerForm" id="add-player">
+      <form action="" id="add-player" class="">
+        <h2>Add Player</h2>
         <div class="form-group">
           <label for="player-name">Player Name</label>
-          <input class="form-control" type="text" name="player-name" ng-model="form.player.name">
+          <input type="text" name="player-name" class="form-control" ng-model="player.name">
         </div>
-
         <div class="form-group">
           <label for="player-email">Player Email</label>
-          <input class="form-control" type="email" name="player-email" ng-model="form.player.email">
+          <input type="text" name="player-email" class="form-control" ng-model="player.email">
         </div>
-
         <div class="form-group">
           <label for="player-team">Team</label>
-          <input class="form-control" type="text" name="player-team" ng-model="form.player.team">
+          <input type="text" name="player-team" class="form-control" ng-model="player.team">
         </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" ng-click="addPlayer(player)">Add</button>
+        </div>
+      </form>
 
-        <div class="form-group"></div>
-
-        <button class="btn btn-primary" type="submit" ng-click="addPlayer(form.player)">Submit</button>
-        <button type="button" class="btn btn-default" ng-click="PlayersCtrl.clearForm()">Clear</button>
+      <!-- Add Team -->
+      <form action="" id="add-team" class="">
+        <h2>Add Team</h2>
+        <div class="form-group">
+          <label for="team-name">Team</label>
+          <input type="text" name="team-name" class="form-control">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+      </form>
+      <!-- Add Group -->
+      <form action="" id="add-group" class="">
+        <h2>Add Group</h2>
+      </form>
+      <!-- Add Tournament -->
+      <form action="" id="add-tournament" class="">
+        <h2>Add Tournament</h2>
       </form>
     </div>
     <script src="assets/bundle.js"></script>
