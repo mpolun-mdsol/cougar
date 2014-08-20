@@ -24,11 +24,12 @@ Tournament tracking app.
 1. Clone the git repo: ```git clone git@github.com:mpolun-mdsol/cougar.git```
 2. CD into the directory and run npm install: ```npm install```
 3. Make sure you have postgres (and the commandline tools) installed
-4. Create the database: ```npm run-script create-db```
-5. Run the migrations: ```npm run-script migrate```
-6. Run bower ```bower install```
-7. Run ```grunt build```
-8. Run ```grunt```
+4. create a root user if you don't have one: ```createuser -s root```
+5. Create the database: ```npm run-script create-db```
+6. Run the migrations: ```npm run-script migrate```
+7. Run bower ```bower install```
+8. Run ```grunt build```
+9. Run ```grunt```
 
 ## Debugging
 Use ```node-inspector``` then visit http://127.0.0.1:8080/debug?port=5858
