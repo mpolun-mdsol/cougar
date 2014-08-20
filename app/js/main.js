@@ -6,9 +6,7 @@ require('angular-strap.tpl')
 var cougar = angular.module('cougar', [])
 
 cougar.controller('PlayersCtrl', function ($scope, $http) {
-  var app = this;
-
-  function addPlayer(player) {
+  $scope.addPlayer(player) {
     if (player) {
       $http.post('http://localhost:7777/api/players/', player, {headers: {'Content-Type': 'application/json'}})
       .success(function playerCreated(data) {
