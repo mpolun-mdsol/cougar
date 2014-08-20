@@ -6650,11 +6650,30 @@ body {
 
 #main {
   margin-top: 60px; }
-  #main form {
-    border: 1px solid #555;
-    background-color: #FFF;
-    padding: 10px; }
-    #main form h2 {
-      margin-top: 0; }
+
+.card {
+  float: left;
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #555;
+  background-color: #FFF;
+  padding: 0 10px; }
+  .card h2 {
+    margin-top: 5px; }
+  .card ul li {
+    border-bottom: 1px solid #ccc; }
+    .card ul li:last-of-type {
+      border-bottom: none; }
+  .card ul.groups li {
+    border: 1px solid #ccc; }
+    .card ul.groups li h4 {
+      margin: 0;
+      padding: 3px;
+      background-color: #ccc; }
+  .card ul.group li {
+    border: none; }
+  .card form {
+    border-top: 1px solid #999;
+    padding: 10px 0; }
 
 /*# sourceMappingURL=bundle.css.map */
