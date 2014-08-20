@@ -11,7 +11,7 @@
 
     <div id="main" class="container-fluid">
       <!-- Add Player -->
-      <form action="" id="add-player" class="">
+      <form action="" id="add-player" class="card">
         <h2>Add Player</h2>
         <div class="form-group">
           <label for="player-name">Player Name</label>
@@ -22,34 +22,122 @@
           <input type="text" name="player-email" class="form-control">
         </div>
         <div class="form-group">
-          <label for="player-team">Team</label>
-          <input type="text" name="player-team" class="form-control">
+          <label for="player-team">Player Team</label>
+          <select type="select" name="player-team" class="form-control">
+            <option value="">Team 1</option>
+            <option value="">Team 2</option>
+            <option value="">Team 3</option>
+            <option value="">Team 4</option>
+            <option value="">Team 5</option>
+            <option value="">Team 6</option>
+            <option value="">Team 7</option>
+            <option value="">Team 8</option>
+            <option value="">Team 9</option>
+            <option value="">Team 0</option>       
+          </select>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">Add</button>
+          <button class="btn btn-primary" type="submit">Add Player</button>
         </div> 
       </form>
     
-      <!-- Add Team -->
-      <form action="" id="add-team" class="">
-        <h2>Add Team</h2>
-        <div class="form-group">
-          <label for="team-name">Team</label>
-          <input type="text" name="team-name" class="form-control">
+      <!-- Teams -->
+      <div class="card">
+        <h2>Teams</h2>
+        <ul class="list-unstyled">
+          <li>NO TEAMS</li>
+        </ul>
+        <form action="" id="add-team" class="form-inline">
+          <div class="form-group">
+            <input type="text" name="team-name" class="form-control"  placeholder="Add Team">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-plus-sign"></span> Add </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Groups -->
+      <div class="card">
+        <h2>Groups</h2>
+        <ul class="groups list-unstyled">
+          <li>
+            <h4>Group X</h4>
+            <ul class="group list-unstyled">
+              <li>team 1</li>
+              <li>team 2</li>
+              <li>team 3</li>
+              <li>team 4</li>  
+            </ul>
+          </li>
+        </ul>
+        <form action="" id="add-group" >
+          <div class="form-group">
+            <input type="text" name="group-name" class="form-control"  placeholder="Group Name">
+          </div>
+           <div class="form-group">
+          <select type="select" name="player-team" class="form-control">
+            <option value="">Team 1</option>
+            <option value="">Team 2</option>
+            <option value="">Team 3</option>
+            <option value="">Team 4</option>
+            <option value="">Team 5</option>
+            <option value="">Team 6</option>
+            <option value="">Team 7</option>
+            <option value="">Team 8</option>
+            <option value="">Team 9</option>
+            <option value="">Team 0</option>       
+          </select>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Add</button>
+         <div class="form-group">
+          <select type="select" name="player-team" class="form-control">
+            <option value="">Team 1</option>
+            <option value="">Team 2</option>
+            <option value="">Team 3</option>
+            <option value="">Team 4</option>
+            <option value="">Team 5</option>
+            <option value="">Team 6</option>
+            <option value="">Team 7</option>
+            <option value="">Team 8</option>
+            <option value="">Team 9</option>
+            <option value="">Team 0</option>       
+          </select>
         </div>
-      </form>
-      <!-- Add Group -->
-      <form action="" id="add-group" class="">
-        <h2>Add Group</h2>
-      </form>
-      <!-- Add Tournament -->
-      <form action="" id="add-tournament" class="">
-        <h2>Add Tournament</h2>
-      </form>
-    </div>
+         <div class="form-group">
+          <select type="select" name="player-team" class="form-control">
+            <option value="">Team 1</option>
+            <option value="">Team 2</option>
+            <option value="">Team 3</option>
+            <option value="">Team 4</option>
+            <option value="">Team 5</option>
+            <option value="">Team 6</option>
+            <option value="">Team 7</option>
+            <option value="">Team 8</option>
+            <option value="">Team 9</option>
+            <option value="">Team 0</option>       
+          </select>
+        </div>
+         <div class="form-group">
+          <select type="select" name="player-team" class="form-control">
+            <option value="">Team 1</option>
+            <option value="">Team 2</option>
+            <option value="">Team 3</option>
+            <option value="">Team 4</option>
+            <option value="">Team 5</option>
+            <option value="">Team 6</option>
+            <option value="">Team 7</option>
+            <option value="">Team 8</option>
+            <option value="">Team 9</option>
+            <option value="">Team 0</option>       
+          </select>
+        </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-plus-sign"></span> Add </button>
+          </div>
+        </form>
+      </div>
+      
+      
 
     <script src="assets/bundle.js"></script>
   </body>
