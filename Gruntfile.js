@@ -90,6 +90,14 @@ module.exports = function(grunt) {
       dest: 'app/assets/bundle.css'
     }
   }
+  
+  config.copy = {
+    main: {
+      files: [
+        {expand: true, flatten:true, src: ['bower_components/bootstrap/fonts/*'], dest: 'app/fonts/'}
+      ]
+    }
+  }
 
   config.eslint = {
     code: {
@@ -140,6 +148,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent')
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-sass')
+  grunt.loadNpmTasks('grunt-contrib-copy')
 
   grunt.registerMultiTask('spec', 'Run node jasmine specs', function(){
     var done = this.async();
@@ -150,5 +159,5 @@ module.exports = function(grunt) {
   })
 
   grunt.registerTask('default', ['concurrent:dev'])
-  grunt.registerTask('build', ['browserify', 'sass', 'concat'])
+  grunt.registerTask('build', ['browserify', 'sass', 'concat', 'copy'])
 }
