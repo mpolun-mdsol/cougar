@@ -1,6 +1,6 @@
 'use strict'
 require('angular')
 require('angular-strap')
-require('angular-strap.tpl')
+require('angular-strap/dist/angular-strap.tpl')
 
 console.log('hello world!')
