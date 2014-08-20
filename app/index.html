@@ -9,9 +9,9 @@
       <a href="" class="navbar-brand">Cougar</a>
     </header>
 
-    <div id="main" class="container-fluid" ng-controller="PlayersCtrl">
+    <div id="main" class="container-fluid">
       <!-- Add Player -->
-      <form id="add-player" class="card" ng-submit="addPlayer(player)">
+      <form id="add-player" class="card" ng-submit="addPlayer(player)" ng-controller="PlayersCtrl">
         <h2>Add Player</h2>
         <div class="form-group">
           <label for="player-name">Player Name</label>
