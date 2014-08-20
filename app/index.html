@@ -51,7 +51,7 @@
         <ul class="list-unstyled">
           <li ng-hide="teams">NO TEAMS</li>
           <li ng-show="teams" ng-repeat="team in teams">
-            <a ng-click="deleteTeam(team)">&times;</a>
+            <span class="glyphicon glyphicon-minus-sign" ng-click="deleteTeam(team)"></span>
             {{team.name}}
           </li>
         </ul>
