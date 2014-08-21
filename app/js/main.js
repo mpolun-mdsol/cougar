@@ -19,7 +19,7 @@ cougar.controller('PlayersCtrl', function ($scope, $http) {
   }
 })
 
-cougar.controller('TeamsCtrl', function ($scope, $http) {
+cougar.controller('TeamsCtrl', function ($scope, $http, $timeout) {
   var updateTeamsList = function () {
     $http.get('http://localhost:7777/api/teams/').success(function (data) {
       $scope.teams = data
@@ -27,12 +27,19 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
   }
 
   $scope.teams = updateTeamsList()
+  $scope.status = true;
+
+  $scope.showMessage = function () {
+    $scope.status = false 
+    $timeout(function () { $scope.status = true }, 1000)
+  }
 
   $scope.addTeam = function (team) {
     if (team) {
       $http.post('http://localhost:7777/api/teams/', team, {headers: {'Content-Type': 'application/json'}})
       .success(function teamCreated(data) {
         console.log(data)
+        $scope.message = team.name + ' was successfully added'
         $scope.team.name = ''
         updateTeamsList()
       })
@@ -47,6 +54,7 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
       $http.delete('http://localhost:7777/api/teams/' + team.id)
       .success(function (data) {
         console.log(data)
+        $scope.message = team.name + ' was successfully deleted'
         updateTeamsList()
       })
     }
