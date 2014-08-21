@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="cougar">
+<html lang="en" data-ng-app="cougar">
   <head>
     <title>Cougar tournaments</title>
     <link rel="stylesheet" href="assets/bundle.css">
@@ -11,22 +11,22 @@
 
     <div id="main" class="container-fluid">
       <!-- Add Player -->
-      <form id="add-player" class="card" ng-submit="addPlayer(player)" ng-controller="PlayersCtrl">
+      <form id="add-player" class="card" data-ng-submit="addPlayer(player)" data-ng-controller="PlayersCtrl">
         <h2>Add Player</h2>
 
         <div class="form-group">
           <label for="player-name">Player Name</label>
-          <input type="text" name="player-name" class="form-control" ng-model="player.name">
+          <input type="text" name="player-name" class="form-control" data-ng-model="player.name">
         </div>
 
         <div class="form-group">
           <label for="player-email">Player Email</label>
-          <input type="email" name="player-email" class="form-control" ng-model="player.email">
+          <input type="email" name="player-email" class="form-control" data-ng-model="player.email">
         </div>
 
         <div class="form-group">
           <label for="player-team">Player Team</label>
-          <select type="select" name="player-team" class="form-control" ng-model="player.team">
+          <select type="select" name="player-team" class="form-control" data-ng-model="player.team">
             <option value="1">Team 1</option>
             <option value="2">Team 2</option>
             <option value="3">Team 3</option>
@@ -46,19 +46,19 @@
       </form>
 
       <!-- Teams -->
-      <div class="card" ng-controller="TeamsCtrl">
+      <div class="card" data-ng-controller="TeamsCtrl">
         <h2>Teams</h2>
         <ul class="list-unstyled">
-          <li ng-hide="teams">NO TEAMS</li>
-          <li ng-show="teams" ng-repeat="team in teams">
-            <span class="glyphicon glyphicon-minus-sign" ng-click="deleteTeam(team)"></span>
+          <li data-ng-hide="teams">NO TEAMS</li>
+          <li data-ng-show="teams" data-ng-repeat="team in teams">
+            <span class="glyphicon glyphicon-minus-sign" data-ng-click="deleteTeam(team); showMessage()"></span>
             {{team.name}}
           </li>
         </ul>
 
-        <form id="add-team" class="form-inline" ng-submit="addTeam(team)">
+        <form id="add-team" class="form-inline" data-ng-submit="addTeam(team); showMessage()">
           <div class="form-group">
-            <input type="text" name="team-name" class="form-control" placeholder="Add Team" ng-model="team.name">
+            <input type="text" name="team-name" class="form-control" placeholder="Add Team" data-ng-model="team.name">
           </div>
 
           <div class="form-group">
@@ -67,6 +67,7 @@
             </button>
           </div>
         </form>
+        <span data-ng-hide="status">{{message}}</span>
       </div>
 
       <!-- Groups -->
