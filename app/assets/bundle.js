@@ -6,7 +6,19 @@ require("./../../bower_components/angular-strap/dist/angular-strap.tpl")
 
 var cougar = angular.module('cougar', [])
 
-cougar.controller('PlayersCtrl', function ($scope, $http) {
+cougar.factory('Teams', function ($http) {
+  var teams = { list: [] }
+
+  $http.get('http://localhost:7777/api/teams/').success(function (data) {
+    teams.list = data
+  })
+
+  return teams
+})
+
+cougar.controller('PlayersCtrl', function ($scope, $http, Teams) {
+  $scope.teams = Teams
+
   $scope.addPlayer = function (player) {
     if (player) {
       $http.post('http://localhost:7777/api/players/', player, {headers: {'Content-Type': 'application/json'}})
@@ -14,20 +26,14 @@ cougar.controller('PlayersCtrl', function ($scope, $http) {
         console.log(data)
       })
       .error(function playerCreateError(data) {
-        console.log(data)
+        console.error(data)
       })
     }
   }
 })
 
-cougar.controller('TeamsCtrl', function ($scope, $http) {
-  var updateTeamsList = function () {
-    $http.get('http://localhost:7777/api/teams/').success(function (data) {
-      $scope.teams = data
-    })
-  }
-
-  $scope.teams = updateTeamsList()
+cougar.controller('TeamsCtrl', function ($scope, $http, Teams) {
+  $scope.teams = Teams
 
   $scope.addTeam = function (team) {
     if (team) {
@@ -35,10 +41,10 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
       .success(function teamCreated(data) {
         console.log(data)
         $scope.team.name = ''
-        updateTeamsList()
+        Teams.list.push(data)
       })
       .error(function teamCreateError(data) {
-        console.log(data)
+        console.error(data)
       })
     }
   }
@@ -46,9 +52,14 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
   $scope.deleteTeam = function (team) {
     if (team) {
       $http.delete('http://localhost:7777/api/teams/' + team.id)
-      .success(function (data) {
-        console.log(data)
-        updateTeamsList()
+      .success(function teamDeleted(data) {
+        var index = Teams.list.indexOf(team)
+        Teams.list.splice(index, 1)
+
+        console.log('Team' ,team.id, 'was destroyed')
+      })
+      .error(function teamDeleteError(data) {
+        console.error(data)
       })
     }
   }
