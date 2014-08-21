@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict'
 require("./../../bower_components/angular/angular.js")
 require("./../../bower_components/angular-strap/dist/angular-strap.min.js")
@@ -20,7 +20,7 @@ cougar.controller('PlayersCtrl', function ($scope, $http) {
   }
 })
 
-cougar.controller('TeamsCtrl', function ($scope, $http) {
+cougar.controller('TeamsCtrl', function ($scope, $http, $timeout) {
   var updateTeamsList = function () {
     $http.get('http://localhost:7777/api/teams/').success(function (data) {
       $scope.teams = data
@@ -28,12 +28,19 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
   }
 
   $scope.teams = updateTeamsList()
+  $scope.status = true;
+
+  $scope.showMessage = function () {
+    $scope.status = false 
+    $timeout(function () { $scope.status = true }, 1000)
+  }
 
   $scope.addTeam = function (team) {
     if (team) {
       $http.post('http://localhost:7777/api/teams/', team, {headers: {'Content-Type': 'application/json'}})
       .success(function teamCreated(data) {
         console.log(data)
+        $scope.message = team.name + ' was successfully added'
         $scope.team.name = ''
         updateTeamsList()
       })
@@ -48,6 +55,7 @@ cougar.controller('TeamsCtrl', function ($scope, $http) {
       $http.delete('http://localhost:7777/api/teams/' + team.id)
       .success(function (data) {
         console.log(data)
+        $scope.message = team.name + ' was successfully deleted'
         updateTeamsList()
       })
     }
