@@ -18,3 +18,37 @@ cougar.controller('PlayersCtrl', function ($scope, $http) {
     }
   }
 })
+
+cougar.controller('TeamsCtrl', function ($scope, $http) {
+  var updateTeamsList = function () {
+    $http.get('http://localhost:7777/api/teams/').success(function (data) {
+      $scope.teams = data
+    })
+  }
+
+  $scope.teams = updateTeamsList()
+
+  $scope.addTeam = function (team) {
+    if (team) {
+      $http.post('http://localhost:7777/api/teams/', team, {headers: {'Content-Type': 'application/json'}})
+      .success(function teamCreated(data) {
+        console.log(data)
+        $scope.team.name = ''
+        updateTeamsList()
+      })
+      .error(function teamCreateError(data) {
+        console.log(data)
+      })
+    }
+  }
+
+  $scope.deleteTeam = function (team) {
+    if (team) {
+      $http.delete('http://localhost:7777/api/teams/' + team.id)
+      .success(function (data) {
+        console.log(data)
+        updateTeamsList()
+      })
+    }
+  }
+})
