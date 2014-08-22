@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict'
 require("./../../bower_components/angular/angular.js")
 require("./../../bower_components/angular-strap/dist/angular-strap.min.js")
@@ -6,7 +6,19 @@ require("./../../bower_components/angular-strap/dist/angular-strap.tpl")
 
 var cougar = angular.module('cougar', [])
 
-cougar.controller('PlayersCtrl', function ($scope, $http) {
+cougar.factory('Teams', function ($http) {
+  var teams = { list: [] }
+
+  $http.get('http://localhost:7777/api/teams/').success(function (data) {
+    teams.list = data
+  })
+
+  return teams
+})
+
+cougar.controller('PlayersCtrl', function ($scope, $http, Teams) {
+  $scope.teams = Teams
+
   $scope.addPlayer = function (player) {
     if (player) {
       $http.post('http://localhost:7777/api/players/', player, {headers: {'Content-Type': 'application/json'}})
@@ -14,24 +26,19 @@ cougar.controller('PlayersCtrl', function ($scope, $http) {
         console.log(data)
       })
       .error(function playerCreateError(data) {
-        console.log(data)
+        console.error(data)
       })
     }
   }
 })
 
-cougar.controller('TeamsCtrl', function ($scope, $http, $timeout) {
-  var updateTeamsList = function () {
-    $http.get('http://localhost:7777/api/teams/').success(function (data) {
-      $scope.teams = data
-    })
-  }
+cougar.controller('TeamsCtrl', function ($scope, $http, $timeout, Teams) {
+  $scope.teams = Teams
 
-  $scope.teams = updateTeamsList()
-  $scope.status = true;
+  $scope.status = true
 
   $scope.showMessage = function () {
-    $scope.status = false 
+    $scope.status = false
     $timeout(function () { $scope.status = true }, 1000)
   }
 
@@ -42,10 +49,10 @@ cougar.controller('TeamsCtrl', function ($scope, $http, $timeout) {
         console.log(data)
         $scope.message = team.name + ' was successfully added'
         $scope.team.name = ''
-        updateTeamsList()
+        Teams.list.push(data)
       })
       .error(function teamCreateError(data) {
-        console.log(data)
+        console.error(data)
       })
     }
   }
@@ -53,10 +60,14 @@ cougar.controller('TeamsCtrl', function ($scope, $http, $timeout) {
   $scope.deleteTeam = function (team) {
     if (team) {
       $http.delete('http://localhost:7777/api/teams/' + team.id)
-      .success(function (data) {
-        console.log(data)
-        $scope.message = team.name + ' was successfully deleted'
-        updateTeamsList()
+      .success(function teamDeleted(data) {
+        var index = Teams.list.indexOf(team)
+        Teams.list.splice(index, 1)
+
+        console.log('Team' ,team.id, 'was destroyed')
+      })
+      .error(function teamDeleteError(data) {
+        console.error(data)
       })
     }
   }
