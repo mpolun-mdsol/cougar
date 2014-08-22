@@ -67,6 +67,7 @@ router.get('/api/teams', function serveTeams(req, res) {
 })
 
 router.post('/api/teams', function createTeam(req, res) {
+  req.body.tournament = 1
   Team.forge(req.body).save().then(function teamCreated(team) {
     res.json(team)
   })
